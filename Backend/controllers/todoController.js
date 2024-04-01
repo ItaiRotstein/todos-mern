@@ -1,11 +1,12 @@
-
-const asyncHandler = require("express-async-handler")
+const Todo = require("../models/todoModel");
+const asyncHandler = require("express-async-handler");
 // @desc    Get todos
 // @route   GET /api/todos
 // @access  Private
 const getTodos = asyncHandler(async (req, res) => {
-    res.status(200).json({message: "Get todos"})
-})
+    const todos = await Todo.find()
+    res.status(200).json(todos)
+});
 
 // @desc    add todos
 // @route   POST /api/todos
@@ -14,22 +15,46 @@ const addTodo = asyncHandler(async (req, res) => {
     if (!req.body.text) {
         res.status(400)
         throw new Error("Please add a text field")
-    }
-    res.status(200).json({message: "Add todo"})
+    };
+
+    const todo = await Todo.create({
+        text: req.body.text,
+        importance: req.body.importance
+    });
+
+    res.status(200).json(todo);
 })
 
 // @desc    update todos
 // @route   PUT /api/todos/:id
 // @access  Private
 const updateTodo = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Update todo ${req.params.id}`})
+    const todo = await Todo.findById(req.params.id);
+
+    if (!todo) {
+        res.status(400);
+        throw new Error('Todo not ofund');
+    }
+
+    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    res.status(200).json({ updatedTodo });
 })
 
 // @desc    Delete todos
 // @route   DELETE /api/todos/:id
 // @access  Private
 const deleteTodo = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Delete todo ${req.params.id}`})
+    const todo = await Todo.findById(req.params.id);
+
+    if (!todo) {
+        res.status(400);
+        throw new Error('Todo not ofund');
+    };
+
+    await todo.deleteOne();
+
+    res.status(200).json({ id: req.params.id })
 })
 
 module.exports = {
@@ -37,4 +62,4 @@ module.exports = {
     addTodo,
     updateTodo,
     deleteTodo,
-}
+};
