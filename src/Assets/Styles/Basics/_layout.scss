@@ -7,7 +7,6 @@
 //tablets
 @media only screen and (min-width: 640px) {
     .main-layout {
-        background-color: red;
         display: grid;
         grid-template-columns: 25% 75%;
         margin: auto;
@@ -16,8 +15,7 @@
 }
 
 //desktop
-@media only screen and (min-width: 768px) {
-    .main-layout {
-        background-color: blue;
-    }
-}
+// @media only screen and (min-width: 768px) {
+//     .main-layout {
+//     }
+// }

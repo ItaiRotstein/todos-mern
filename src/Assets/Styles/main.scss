@@ -1,9 +1,13 @@
 //setup
+@import "setup/_variables";
 @import "setup/_typography";
 @import "setup/_base";
 
 //basics
-@import "basics/layout";
+@import "basics/_layout";
+
+//pages
+@import "pages/_app";
 
 //cmps
 @import "cmps/_header";

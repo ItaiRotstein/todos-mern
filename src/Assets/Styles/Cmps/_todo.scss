@@ -1,0 +1,31 @@
+.todo-container {
+    display: flex;
+    border-bottom: 1px solid $clr2;
+    background-color: $clr1;
+    color: $clr5;
+    padding: 1rem;
+
+    input,
+    label {
+        cursor: pointer;
+    }
+
+    &:hover {
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        background-color: darken($clr1, 5%);
+    }
+}
+
+.checkbox {
+    margin-right: 1rem;
+}
+
+.time-and-date {
+    display: flex;
+    color: $clr3;
+    div {
+        margin-right: 1rem;
+    }
+}
