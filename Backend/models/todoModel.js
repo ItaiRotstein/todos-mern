@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const todoSchema = mongoose.Schema({
-    text: {
+    title: {
         type: String,
-        required: [true, "Please add text value"]
+        required: [true, "Title is empty"]
     },
-    importance: {
+    id: {
         type: String,
-        // required: [true, "Please add text value"]
+        required: [true, "Id is not existing, must have id"]
     }
 
 }, {

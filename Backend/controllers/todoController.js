@@ -12,14 +12,14 @@ const getTodos = asyncHandler(async (req, res) => {
 // @route   POST /api/todos
 // @access  Private
 const addTodo = asyncHandler(async (req, res) => {
-    if (!req.body.text) {
+    if (!req.body.title) {
         res.status(400)
         throw new Error("Please add a text field")
     };
 
     const todo = await Todo.create({
-        text: req.body.text,
-        importance: req.body.importance
+        title: req.body.title,
+        id: req.body.id
     });
 
     res.status(200).json(todo);
@@ -33,7 +33,7 @@ const updateTodo = asyncHandler(async (req, res) => {
 
     if (!todo) {
         res.status(400);
-        throw new Error('Todo not ofund');
+        throw new Error('Todo not found');
     }
 
     const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
