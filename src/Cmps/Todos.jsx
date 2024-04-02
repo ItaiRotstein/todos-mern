@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import Sidenav from "./Sidenav"
 import Todo from "./Todo"
 import EditTodo from "./EditTodo"
+import AddTodo from "./AddTodo";
 
 import dataPlaceholder from "../data";
 
@@ -21,6 +22,20 @@ const Todos = () => {
         setTodos(dataPlaceholder)
     }, [])
 
+    useEffect(() => {
+        const fetchTodos = async () => {
+          try {
+            const res = await fetch('http://localhost:8000/api/todos');
+            const data = await res.json();
+          } catch (error) {
+            console.log("Error fetching data", error);
+          } finally {
+            // setLoading(false)
+          }
+        }
+        fetchTodos()
+      }, [])
+
     if (!todos) return
 
     return (
@@ -32,6 +47,7 @@ const Todos = () => {
                 handleClose={handleClose}
                 todo={activeTodo}
             />}
+            <AddTodo/>
             <section className="todos">
                 {todos.map((todo) => (
                     <Todo
