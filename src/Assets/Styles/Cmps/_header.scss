@@ -1,5 +1,46 @@
+.header-container {
+    border-bottom: 1px solid $clr2;
+    position: sticky;
+    top: 0;
+}
+
 .header {
-    text-align: center;
-    border-bottom: 1px solid grey;
-    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin: 0 4rem;
+    background-color: $clr1;
+    transition: margin-bottom 0.7s;
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+
+        @include pointer;
+
+        .logo-text {
+            color: $clr8;
+
+            span {
+                color: $clr4;
+            }
+        }
+    }
+
+    .logo-img {
+        width: 2rem;
+        margin-right: 10px;
+    }
+
+    .menu-icon {
+        width: 2rem;
+        height: 2rem;
+        @include pointer;
+    }
+
+}
+
+.header.active {
+    margin-bottom: 40px;
 }

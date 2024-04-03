@@ -2,15 +2,18 @@
 @import "setup/_variables";
 @import "setup/_typography";
 @import "setup/_base";
+@import "setup/_mixins";
 
 //basics
 @import "basics/_layout";
+@import "basics/_helpers";
 
 //pages
 @import "pages/_app";
 
 //cmps
 @import "cmps/_header";
+@import "cmps/_navbar";
 @import "cmps/_sidenav";
 @import "cmps/_todos";
 @import "cmps/_todo";

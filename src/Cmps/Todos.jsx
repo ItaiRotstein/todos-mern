@@ -5,14 +5,19 @@ import Todo from "./Todo"
 import EditTodo from "./EditTodo"
 import AddTodo from "./AddTodo";
 
+import { IoAddCircleSharp } from "react-icons/io5"; 
+
 const Todos = () => {
 
   const [todos, setTodos] = useState([])
   const [activeTodo, setActiveTodo] = useState(null)
-  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEdit = () => setShowEdit(true);
+  const handleCloseAdd = () => setShowAdd(false);
+  const handleShowAdd = () => setShowAdd(true);
 
   const handleActiveTodo = (todo) => setActiveTodo(todo)
 
@@ -69,7 +74,6 @@ const Todos = () => {
     setTodos(updatedTodos)
     return;
   };
-  console.log(todos);
 
   return (
 
@@ -77,22 +81,24 @@ const Todos = () => {
 
       <main className="main-layout">
         <Sidenav />
-        {show && <EditTodo
-          show={show}
-          handleShow={handleShow}
-          handleClose={handleClose}
+
+        {showEdit && <EditTodo
+          show={showEdit}
+          handleShow={handleShowEdit}
+          handleClose={handleCloseEdit}
           todo={activeTodo}
           updateTodo={updateTodo}
           deleteTodo={deleteTodo}
-        />}
-        <AddTodo addTodo={addTodo} />
+          />}
+        <AddTodo addTodo={addTodo} show={showAdd} handleClose={handleCloseAdd}/>
         <section className="todos">
+          <IoAddCircleSharp className="add-button" onClick={handleShowAdd}/>
           {todos.map((todo) => (
             <Todo
               todo={todo}
               key={todo.id}
-              handleShow={handleShow}
-              handleClose={handleClose}
+              handleShow={handleShowEdit}
+              handleClose={handleCloseEdit}
               handleActiveTodo={handleActiveTodo}
             />
           ))}

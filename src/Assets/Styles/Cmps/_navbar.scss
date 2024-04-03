@@ -1,0 +1,24 @@
+.navbar {
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    top: 65px;
+    left: -100%;
+    padding: 0;
+    padding-bottom: 1rem;
+    justify-content: center;
+    transition: opacity 0.7s, left 0.5s;
+
+    input[type=text] {
+        padding: 6px;
+        border: solid 2px $clr5;
+        color: $clr5;
+        border-radius: 10px;
+        max-width: 165px;
+    }
+}
+
+.navbar.active {
+    opacity: 1;
+    left: 4rem;
+}

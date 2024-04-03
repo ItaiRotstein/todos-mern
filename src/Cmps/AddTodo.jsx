@@ -6,12 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function AddTodo({ addTodo }) {
+function AddTodo({ addTodo, show, handleClose}) {
     const [todoTitle, setTodoTitle] = useState('');
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -28,9 +24,9 @@ function AddTodo({ addTodo }) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            {/* <Button variant="primary">
                 Add Todo
-            </Button>
+            </Button> */}
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
