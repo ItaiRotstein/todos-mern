@@ -2,11 +2,22 @@ import { useState } from "react";
 
 import EditTodo from "./EditTodo";
 
+import { MdOutlineDeleteForever } from "react-icons/md";
+
 const Todo = ({ todo, updateTodo, deleteTodo }) => {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [isTodoHover, setTodoHover] = useState(false)
+
+  const todoClassHover = isTodoHover ? "todo-delete-button hover-todo" : "todo-delete-button"
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation()
+    deleteTodo(todo._id)
+  }
 
   return (<>
     {show && <EditTodo
@@ -17,19 +28,21 @@ const Todo = ({ todo, updateTodo, deleteTodo }) => {
       updateTodo={updateTodo}
       deleteTodo={deleteTodo}
     />}
-    <div className="todo-container" onClick={handleShow}>
-
+    <div className={"todo-container"} onClick={handleShow} onMouseEnter={() => setTodoHover(true)} onMouseLeave={() => setTodoHover(false)}>
       <div className="todo">
         <div style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
           {todo.title}
         </div>
-        <div className="time-and-date">
-          <div>
-            {todo.date}
+        <div className="todo-buttons">
+          <div className="time-and-date">
+            <div>
+              {todo.date}
+            </div>
+            <div>
+              {todo.time}
+            </div>
           </div>
-          <div>
-            {todo.time}
-          </div>
+          <MdOutlineDeleteForever className={todoClassHover} onClick={handleDeleteClick} />
         </div>
       </div>
     </div>

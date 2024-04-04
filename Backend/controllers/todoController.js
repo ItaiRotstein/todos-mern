@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler");
 // @route   GET /api/todos
 // @access  Private
 const getTodos = asyncHandler(async (req, res) => {
-    const searchByFilter = req.query.title ? {$text: {$search: req.query.title}} : {}
+    const searchByFilter = req.query.title ? {title: {$regex: req.query.title, $options: "i"}} : {}
+    console.log(searchByFilter);
     const todos = await Todo.find(searchByFilter)
     res.status(200).json(todos)
 });

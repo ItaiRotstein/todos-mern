@@ -1,7 +1,6 @@
 .todo-container {
-    display: flex;
+    // display: flex;
     border-bottom: 1px solid $clr2;
-    background-color: $clr1;
     color: $clr5;
     padding: 0.5rem 0;
 
@@ -30,7 +29,33 @@
 .time-and-date {
     display: flex;
     color: $clr6;
+
     div {
         margin-right: 1rem;
+    }
+}
+
+.todo-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .todo-delete-button {
+        display: none;
+        margin-right: 1rem;
+        width: 18px;
+        height: 18px;
+        color: $clr7;
+
+        &:hover {
+          
+            border-radius: 100px;
+            color: darken($clr7, 15%);
+            // background-color: lighten($clr7, 55%);
+        }
+    }
+
+    .todo-delete-button.hover-todo {
+        display: initial;
     }
 }

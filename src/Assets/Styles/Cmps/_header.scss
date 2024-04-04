@@ -2,7 +2,8 @@
     border-bottom: 1px solid $clr2;
     position: sticky;
     top: 0;
-    background-color: $clr1;
+    background-color: white;
+    z-index: 10;
 }
 
 .header {

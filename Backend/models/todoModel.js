@@ -17,6 +17,6 @@ const todoSchema = mongoose.Schema({
 }, {
     timestamps: true
 });
-todoSchema.index = ({title: "text"});
+// todoSchema.index = ({title: "text"});
 
 module.exports = mongoose.model("Todo", todoSchema)

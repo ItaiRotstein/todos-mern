@@ -4,17 +4,55 @@
 
 //tablets
 @media only screen and (min-width: 640px) {
+     .sidenav-container {
+            z-index: 0;
+            position: fixed;
+        }
     .sidenav {
         display: block;
-        // background-color: $clr2;
         border-right: 1px solid $clr2;
+        background-color: $clr0;
+        padding-left: 51px;
+        margin-top: 20px;
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            // margin-left: 3px;
+            margin-bottom: 12px;
+            padding: 4px 8px;
+            @include pointer;
+            // min-width: 150px;
+
+            &:hover {
+                background-color: lighten($clr7, 40%);
+                border-radius: 7px;
+            }
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            color: $clr10;
+        }
+
+        .add-button {
+            position: static;
+            width: 25px;
+            height: 25px;
+            color: $clr8;
+            margin-right: 6px;
+            margin-left: -3px;
+        }
+
+        .todo-filter{
+            @include input-text;
+        }
     }
 }
 
 //desktop
 @media only screen and (min-width: 768px) {
-    .sidenav {
-        background-color: blue;
-    }
+    
 }
-

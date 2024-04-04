@@ -8,7 +8,9 @@ export const fetchTodos = async (filter) => {
   } catch (error) {
     console.log("Error fetching data", error);
   } 
-}
+};
+
+
 export const addTodo = async (newTodo) => {
   try {
     await fetch("http://192.168.1.152:8000/api/todos", {

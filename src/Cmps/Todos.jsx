@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useDebouncedCallback } from 'use-debounce';
 
 import { fetchTodos, addTodo, updateTodo, deleteTodo } from "../services/todo.service";
 import Sidenav from "./Sidenav"
@@ -14,9 +15,9 @@ const Todos = () => {
   }, []);
 
   const onAddTodo = async (newTodo) => {
-      addTodo()
-      const updatedTodos = [...todos, newTodo]
-      setTodos(updatedTodos)
+    addTodo()
+    const updatedTodos = [...todos, newTodo]
+    setTodos(updatedTodos)
   };
 
   const onUpdateTodo = async (updatedTodo) => {
@@ -36,21 +37,21 @@ const Todos = () => {
     setTodos(updatedTodos)
   };
 
-  const onHandleFilter = (filter) => {
+  const onHandleFilter = useDebouncedCallback((filter) => {
     const filterBy = `?title=${filter}`
     console.log('from Todos', filterBy);
     const data = fetchTodos(filterBy)
     data.then((res) => setTodos(res))
-  }
+  }, 300);
 
   console.log(todos);
 
   return (
     !todos ? <h1>Loading...</h1> : (
       <main className="main-layout">
-        <Sidenav onHandleFilter={onHandleFilter}/>
-        <AddTodo addTodo={onAddTodo} />
+        <Sidenav onHandleFilter={onHandleFilter} addTodo={onAddTodo} />
         <section className="todos">
+          <AddTodo addTodo={onAddTodo} />
           {todos.map((todo) => (
             <Todo
               todo={todo}
