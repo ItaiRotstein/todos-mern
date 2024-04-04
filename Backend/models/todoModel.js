@@ -8,6 +8,9 @@ const todoSchema = mongoose.Schema({
     id: {
         type: String,
         required: [true, "Id is not existing, must have id"]
+    },
+    completed: {
+        type: Boolean
     }
 
 }, {

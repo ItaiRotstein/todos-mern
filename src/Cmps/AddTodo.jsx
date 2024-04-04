@@ -5,9 +5,14 @@ import { utilService } from '../services/util.service'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { IoAddCircleSharp } from "react-icons/io5";
 
-function AddTodo({ addTodo, show, handleClose}) {
+function AddTodo({ addTodo }) {
     const [todoTitle, setTodoTitle] = useState('');
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -16,7 +21,8 @@ function AddTodo({ addTodo, show, handleClose}) {
         setTodoTitle("")
         const newTodo = {
             title: todoTitle,
-            id: utilService.makeId()
+            id: utilService.makeId(),
+            completed: false,
         }
         addTodo(newTodo)
     }
@@ -27,7 +33,7 @@ function AddTodo({ addTodo, show, handleClose}) {
             {/* <Button variant="primary">
                 Add Todo
             </Button> */}
-
+            <IoAddCircleSharp className="add-button" onClick={handleShow} />
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add Todo</Modal.Title>

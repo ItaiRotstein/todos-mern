@@ -1,34 +1,26 @@
 import { useState } from "react";
 
+import EditTodo from "./EditTodo";
 
-const Todo = ({ todo, handleShow, handleActiveTodo }) => {
-  const [isChecked, setIsChecked] = useState(todo.completed);
+const Todo = ({ todo, updateTodo, deleteTodo }) => {
 
-  const checkboxHandler = () => {
-    setIsChecked(!isChecked);
-  }
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  const clickHanlder = () => {
-    handleShow()
-    handleActiveTodo(todo)
-  }
+  return (<>
+    {show && <EditTodo
+      show={show}
+      handleShow={handleShow}
+      handleClose={handleClose}
+      todo={todo}
+      updateTodo={updateTodo}
+      deleteTodo={deleteTodo}
+    />}
+    <div className="todo-container" onClick={handleShow}>
 
-  return (
-    <div className="todo-container" onClick={clickHanlder}>
-      <form id="categoryForm" >
-        <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={checkboxHandler}
-              onClick={(e) => e.stopPropagation()}
-            />
-          </label>
-        </div>
-      </form>
       <div className="todo">
-        <div style={{ textDecoration: isChecked ? "line-through" : "none" }}>
+        <div style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
           {todo.title}
         </div>
         <div className="time-and-date">
@@ -41,6 +33,8 @@ const Todo = ({ todo, handleShow, handleActiveTodo }) => {
         </div>
       </div>
     </div>
+  </>
   )
 };
+
 export default Todo;

@@ -19,7 +19,8 @@ const addTodo = asyncHandler(async (req, res) => {
 
     const todo = await Todo.create({
         title: req.body.title,
-        id: req.body.id
+        id: req.body.id,
+        completed: req.body.completed,
     });
 
     res.status(200).json(todo);

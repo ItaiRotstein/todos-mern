@@ -8,12 +8,9 @@ function EditTodo({ show, handleClose, todo, updateTodo, deleteTodo }) {
   const [isChecked, setIsChecked] = useState(todo.completed);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     handleClose()
     if (!todoTitle) return
-    const updatedTodo = { ...todo, title: todoTitle }
-    setTodoTitle("")
-    updateTodo(updatedTodo)
+    onUpdateTodo()
   }
 
   const handleDelete = () => {
@@ -21,12 +18,17 @@ function EditTodo({ show, handleClose, todo, updateTodo, deleteTodo }) {
     deleteTodo(todo._id)
   }
 
+  const onUpdateTodo = () => {
+    const updatedTodo = { ...todo, title: todoTitle, completed: isChecked }
+    updateTodo(updatedTodo)
+  }
+
   if (!todo) return;
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} >
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Edit Todo</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
@@ -43,15 +45,13 @@ function EditTodo({ show, handleClose, todo, updateTodo, deleteTodo }) {
             className="mb-3"
             controlId="exampleForm.ControlTextarea1"
           >
-            <Form.Label>Completed</Form.Label>
             <input
-              className="form-check-input mx-2"
+              className="form-check-input me-2"
               type="checkbox"
-              value=""
-              id="flexCheckDefault"
               checked={isChecked}
               onChange={() => setIsChecked(!isChecked)}
             />
+            <Form.Label>Completed</Form.Label>
           </Form.Group>
         </Form>
       </Modal.Body>
