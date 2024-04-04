@@ -36,12 +36,19 @@ const Todos = () => {
     setTodos(updatedTodos)
   };
 
+  const onHandleFilter = (filter) => {
+    const filterBy = `?title=${filter}`
+    console.log('from Todos', filterBy);
+    const data = fetchTodos(filterBy)
+    data.then((res) => setTodos(res))
+  }
+
   console.log(todos);
 
   return (
     !todos ? <h1>Loading...</h1> : (
       <main className="main-layout">
-        <Sidenav />
+        <Sidenav onHandleFilter={onHandleFilter}/>
         <AddTodo addTodo={onAddTodo} />
         <section className="todos">
           {todos.map((todo) => (

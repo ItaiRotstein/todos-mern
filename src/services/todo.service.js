@@ -1,7 +1,8 @@
 
-export const fetchTodos = async () => {
+export const fetchTodos = async (filter) => {
+  console.log('from fetchtodos from service', filter);
   try {
-    const res = await fetch("http://localhost:8000/api/todos");
+    const res = await fetch(`http://192.168.1.152:8000/api/todos/${filter ? filter : ''}`);
     const data = await res.json();
     return (data)
   } catch (error) {
@@ -10,7 +11,7 @@ export const fetchTodos = async () => {
 }
 export const addTodo = async (newTodo) => {
   try {
-    await fetch("http://localhost:8000/api/todos", {
+    await fetch("http://192.168.1.152:8000/api/todos", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ export const addTodo = async (newTodo) => {
 
 export const updateTodo = async (updatedTodo) => {
   try {
-    await fetch(`http://localhost:8000/api/todos/${updatedTodo._id}`, {
+    await fetch(`http://192.168.1.152:8000/api/todos/${updatedTodo._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ export const updateTodo = async (updatedTodo) => {
 };
 
 export const deleteTodo = async (_id) => {
-  await fetch(`http://localhost:8000/api/todos/${_id}`, {
+  await fetch(`http://192.168.1.152:8000/api/todos/${_id}`, {
     method: 'DELETE'
   });
 };

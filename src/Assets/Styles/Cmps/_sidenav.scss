@@ -6,8 +6,8 @@
 @media only screen and (min-width: 640px) {
     .sidenav {
         display: block;
-        background-color: red;
-        border-right: 1px solid grey;
+        // background-color: $clr2;
+        border-right: 1px solid $clr2;
     }
 }
 
