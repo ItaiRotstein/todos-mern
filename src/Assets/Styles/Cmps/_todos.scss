@@ -4,7 +4,7 @@
     gap: 1rem;
     background-color: white;
     padding: 0 4rem;
-    // margin-top: 6rem;
+    padding-bottom: 5rem;
 
     .add-button {
         position: fixed;
@@ -20,6 +20,8 @@
 //tablets
 @media only screen and (min-width: 640px) {
     .todos {
+        padding-bottom: 1rem;
+
         .add-button {
             display: none;
         }
@@ -27,6 +29,4 @@
 }
 
 //desktop
-@media only screen and (min-width: 768px) {
-    
-}
+@media only screen and (min-width: 768px) {}

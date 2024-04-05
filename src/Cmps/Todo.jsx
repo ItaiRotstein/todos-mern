@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import EditTodo from "./EditTodo";
 
-import { MdOutlineDeleteForever } from "react-icons/md";
+import { TiDeleteOutline } from "react-icons/ti";
 
 const Todo = ({ todo, updateTodo, deleteTodo }) => {
 
@@ -42,7 +42,7 @@ const Todo = ({ todo, updateTodo, deleteTodo }) => {
               {todo.time}
             </div>
           </div>
-          <MdOutlineDeleteForever className={todoClassHover} onClick={handleDeleteClick} />
+          <TiDeleteOutline className={todoClassHover} onClick={handleDeleteClick} />
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 
 export const fetchTodos = async (filter) => {
-  console.log('from fetchtodos from service', filter);
   try {
     const res = await fetch(`http://192.168.1.152:8000/api/todos/${filter ? filter : ''}`);
     const data = await res.json();

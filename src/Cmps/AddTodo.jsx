@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { IoAddCircleSharp } from "react-icons/io5";
 
-function AddTodo({ addTodo }) {
+const AddTodo = ({ addTodo }) => {
     const [todoTitle, setTodoTitle] = useState('');
     const [show, setShow] = useState(false);
 
@@ -27,13 +27,15 @@ function AddTodo({ addTodo }) {
         addTodo(newTodo)
     }
 
-
     return (
         <>
             {/* <Button variant="primary">
                 Add Todo
             </Button> */}
-            <IoAddCircleSharp className="add-button" onClick={handleShow} />
+            <div className='add-task-menu menu-item' onClick={handleShow} >
+                <IoAddCircleSharp className="add-button" />
+                <span className={"add-task-text"}>Add Task</span>
+            </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add Todo</Modal.Title>

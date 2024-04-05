@@ -6,7 +6,7 @@ const TodoFilter = ({ filter, onHandleChange }) => {
                 placeholder="Search.."
                 value={filter}
                 onChange={onHandleChange}
-                className="todo-filter"
+                className="todo-filter "
             />
         </>
     )

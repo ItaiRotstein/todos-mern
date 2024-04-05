@@ -15,8 +15,8 @@ const Todos = () => {
   }, []);
 
   const onAddTodo = async (newTodo) => {
-    addTodo()
-    const updatedTodos = [...todos, newTodo]
+    addTodo(newTodo)
+    const updatedTodos = [newTodo, ...todos]
     setTodos(updatedTodos)
   };
 
@@ -39,19 +39,16 @@ const Todos = () => {
 
   const onHandleFilter = useDebouncedCallback((filter) => {
     const filterBy = `?title=${filter}`
-    console.log('from Todos', filterBy);
     const data = fetchTodos(filterBy)
     data.then((res) => setTodos(res))
   }, 300);
-
-  console.log(todos);
 
   return (
     !todos ? <h1>Loading...</h1> : (
       <main className="main-layout">
         <Sidenav onHandleFilter={onHandleFilter} addTodo={onAddTodo} />
         <section className="todos">
-          <AddTodo addTodo={onAddTodo} />
+          {/* <AddTodo addTodo={onAddTodo} isSidenav={false} /> */}
           {todos.map((todo) => (
             <Todo
               todo={todo}
